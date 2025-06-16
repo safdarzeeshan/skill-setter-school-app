@@ -3,6 +3,9 @@
 ## Overview
 This RoR web application allows students and admins of schools to manage and register for courses
 
+## Database Architecture
+Use this link to view the data model architecture https://drive.google.com/file/d/1JmRvIlKFbcvBTjSl77PUak5bQ1o2C4PQ/view?usp=sharing
+
 ## Setup
 Clone repo using gh cli `gh repo clone safdarzeeshan/skill-setter-school-app`
 

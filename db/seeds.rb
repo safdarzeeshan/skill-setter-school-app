@@ -30,6 +30,9 @@ ActiveRecord::Base.transaction do
     )
   end
 
+  # Generate license for term
+  terms.sample.generate_license
+
   # Courses
   courses = 10.times.map do |i|
     Course.create!(
