@@ -1,0 +1,41 @@
+/ Dashboard Header
+div.container.mx-auto.px-4.py-6
+  h1.text-3xl.font-bold.mb-6 Dashboard
+
+  / Total Students via Credit Card
+  div.bg-white.shadow-md.rounded-lg.p-4.mb-6
+    h2.text-xl.font-semibold.mb-2 Total Students Registered via Credit Card
+    p.text-2xl.font-bold.text-blue-600= @index_facade.registration_via_cc_count
+
+  / Total Students via License
+  div.bg-white.shadow-md.rounded-lg.p-4.mb-6
+    h2.text-xl.font-semibold.mb-2 Total Students Registered via License Keys
+    p.text-2xl.font-bold.text-blue-600= @index_facade.registration_via_license_count
+
+  / Courses Table
+  div.bg-white.shadow-md.rounded-lg.p-4.mb-6
+    h2.text-xl.font-semibold.mb-4 Courses and Student Count
+    table.table-auto.w-full.text-left.border-collapse
+      thead
+        tr
+          th.px-4.py-2.border-b.border-gray-300.text-sm.text-gray-600 Course Name
+          th.px-4.py-2.border-b.border-gray-300.text-sm.text-gray-600 Students Enrolled
+      tbody
+        - @index_facade.courses.each do |course|
+          tr.hover:bg-gray-50
+            td.px-4.py-2.border-b.border-gray-200= course.name
+            td.px-4.py-2.border-b.border-gray-200= course.course_terms.flat_map(&:registrations).count
+
+  / Terms Table
+  div.bg-white.shadow-md.rounded-lg.p-4
+    h2.text-xl.font-semibold.mb-4 Terms and Student Count
+    table.table-auto.w-full.text-left.border-collapse
+      thead
+        tr
+          th.px-4.py-2.border-b.border-gray-300.text-sm.text-gray-600 Term Name
+          th.px-4.py-2.border-b.border-gray-300.text-sm.text-gray-600 Students Enrolled
+      tbody
+        - @index_facade.terms.each do |term|
+          tr.hover:bg-gray-50
+            td.px-4.py-2.border-b.border-gray-200= term.name
+            td.px-4.py-2.border-b.border-gray-200= term.registrations.count

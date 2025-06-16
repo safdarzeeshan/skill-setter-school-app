@@ -1,0 +1,9 @@
+nav.bg-blue-800.px-4.py-3
+  .container.mx-auto.flex.justify-between.items-center
+    .text-white.font-bold.text-xl Skillsetter School
+    ul.flex.space-x-6
+      li
+        = link_to "Registrations", student_registrations_path, class: "text-white hover:underline"
+      li
+        = button_to "Log Out", destroy_user_session_path, method: :delete, class: "text-white cursor-pointer hover:underline"
+

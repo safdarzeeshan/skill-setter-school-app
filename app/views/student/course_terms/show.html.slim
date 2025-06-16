@@ -1,0 +1,22 @@
+.section.bg-white.max-w-2xl.mx-auto.mt-8.p-8.rounded.shadow
+  h2.text-2xl.font-bold.mb-4 Course Information
+
+  .mb-6
+    h3.text-lg.font-semibold.mb-2.text-blue-700= @course_term.course.name
+    p.text-gray-700= @course_term.course.description
+
+  hr.my-6
+
+  h2.text-2xl.font-bold.mb-4 Term Information
+
+  .mb-4
+    span.font-semibold.text-gray-800 Term:
+    span.text-gray-700.ml-2= @course_term.term.name
+
+  .mb-4
+    span.font-semibold.text-gray-800 Start Date:
+    span.text-gray-700.ml-2= @course_term.term.start_date.strftime("%B %d, %Y")
+
+  .mb-4
+    span.font-semibold.text-gray-800 End Date:
+    span.text-gray-700.ml-2= @course_term.term.end_date.strftime("%B %d, %Y")

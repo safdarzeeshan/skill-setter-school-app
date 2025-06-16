@@ -1,0 +1,4 @@
+- if @registration_facade.registration_type == 'term'
+  = render 'student/registrations/term', active_terms: @registration_facade.active_terms, registration: @registration_facade.registration
+- elsif @registration_facade.registration_type == 'course'
+  = render 'student/registrations/course', course_terms: @registration_facade.course_terms, registration: @registration_facade.registration

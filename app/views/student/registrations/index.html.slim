@@ -1,0 +1,56 @@
+h2.text-2xl.font-bold.mb-6.text-center
+  | My Course Registrations
+.flex.justify-end
+  = link_to "Register Course", new_student_registration_path(registration_type: 'course'), class: "mb-4 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 font-semibold mr-4"
+  = link_to "Register Term", new_student_registration_path(registration_type: 'term'), class: "mb-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-geen-700 font-semibold"
+  
+table.min-w-full.bg-white.border.border-gray-200.rounded.shadow
+  thead
+    tr
+      th.px-4.py-2.border-b.text-left
+        | Course
+      th.px-4.py-2.border-b.text-left
+        | Term
+      th.px-4.py-2.border-b.text-left
+        | Registered At
+      th.px-4.py-2.border-b.text-left
+        | Status
+      th.px-4.py-2.border-b.text-left
+        | Actions
+  tbody
+    - @index_facade.course_term_registrations.each do |c_t_r|
+      tr.hover:bg-gray-50
+        td.px-4.py-2.border-b
+          = c_t_r.registrationable.course.name
+        td.px-4.py-2.border-b
+          = c_t_r.registrationable.term.name
+        td.px-4.py-2.border-b
+          = c_t_r.registered_at.strftime("%Y-%m-%d %H:%M")
+        td.px-4.py-2.border-b
+          - if c_t_r.active?
+            span.inline-block.px-2.py-1.text-xs.font-semibold.text-green-700.bg-green-100.rounded
+              | Active
+          - else
+            span.inline-block.px-2.py-1.text-xs.font-semibold.text-red-700.bg-red-100.rounded
+              | Inactive
+        td.px-4.py-2.border-b
+          = link_to "View", student_course_term_path(c_t_r.registrationable), class: "text-blue-600 hover:underline"
+    - @index_facade.term_registrations.each do |t_r|
+      - t_r.registrationable.course_terms.each do |course_term|
+        - course = course_term.course
+        tr.hover:bg-gray-50
+          td.px-4.py-2.border-b
+            = course.name
+          td.px-4.py-2.border-b
+            = t_r.registrationable.name
+          td.px-4.py-2.border-b
+            = t_r.registered_at.strftime("%Y-%m-%d %H:%M")
+          td.px-4.py-2.border-b
+            - if t_r.active?
+              span.inline-block.px-2.py-1.text-xs.font-semibold.text-green-700.bg-green-100.rounded
+                | Active
+            - else
+              span.inline-block.px-2.py-1.text-xs.font-semibold.text-red-700.bg-red-100.rounded
+                | Inactive
+          td.px-4.py-2.border-b
+            = link_to "View", student_course_term_path(course_term), class: "text-blue-600 hover:underline"
